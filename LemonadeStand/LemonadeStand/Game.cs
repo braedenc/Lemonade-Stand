@@ -11,11 +11,14 @@ namespace LemonadeStand
         Player player = new Player();
         Inventory inventory = new Inventory();
         Store store = new Store();
+        Day newDay = new Day();
+        Rules rules = new Rules();
         public void StartGame()
         {
-            Console.WriteLine("Welcome to the lemonade stand game! You have no supplies, to start you will have to buy some supplies from the store.");
-            Console.ReadLine();
+            rules.DisplayRules();
+            
             store.StoreMenu();
+            newDay.StartDay();
             
             
             

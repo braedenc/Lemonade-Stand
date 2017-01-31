@@ -9,7 +9,7 @@ namespace LemonadeStand
     class Wallet
     {
         public double balance = 20.00;
-        public string currentBalance()
+        public string CurrentBalance()
         {
             string showBalance = "You currently have: $"+balance+"";
             return showBalance;

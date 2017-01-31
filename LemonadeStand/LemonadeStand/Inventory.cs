@@ -19,9 +19,9 @@ namespace LemonadeStand
             cupList = new List<Cups>();
             sugarList = new List<Sugar>();
         }
-        public string inventoryReport()
+        public string InventoryReport()
         {
-            string report = "Ice cubes: \t\t[" + (iceList.Count) + "]" + "\nLemons: \t\t[" + (lemonList.Count) + "]" + "\nPaper cups: \t\t[" + (cupList.Count) + "]" + "\nCups of Sugar: \t\t[" + (sugarList.Count) + "]";
+            string report = "Ice cubes: \t\t[" + (iceList.Count) + "]" + "\nLemons: \t\t[" + (lemonList.Count) + "]" + "\nCups: \t\t[" + (cupList.Count) + "]" + "\nCups of Sugar: \t\t[" + (sugarList.Count) + "]";
             return report;
             
         }

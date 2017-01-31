@@ -1,0 +1,3 @@
+I used the Single Responsibility principle throughout my whole project but one example of when i used it was my Weather class. My Weather class does one thing and thats randomly generate the weather for each day.
+
+I used the Open/Closed Principle in my inventory class because the inventory class never needs to be modified but it is always open to extension and the lists inside it can always be added to or remove things from them.

@@ -6,69 +6,93 @@ using System.Threading.Tasks;
 
 namespace LemonadeStand
 {
-    class Customer
+    public class Customer
     {
-        Recipe recipe = new Recipe();
-        Wallet wallet = new Wallet();
-        Weather weather = new Weather();
         Random rnd = new Random();
-        Inventory inventory = new Inventory();
-        int buyingFactor;
+        public int buyingFactor;
+        public int buyingFactor2;
+        
 
         public Customer()
         {
             buyingFactor = rnd.Next(1, 11);
+            buyingFactor2 = rnd.Next(1, 21);
         }
         
-        public void BuyLemonade()
+        public void BuyLemonade(string condition, Player player)
         {
-            wallet.balance += recipe.pricePerCup;
-            inventory.iceList.RemoveRange(0, inventory.iceList.Count -recipe.iceCubesPerCup);
-            if (recipe.cupsPerPitcher == 0)
+            bool priceFactor = PriceFactor(player.recipe.pricePerCup);
+            bool weatherFactor = WeatherFactor(condition);
+            if(weatherFactor == true && priceFactor == true)
             {
-                inventory.lemonList.RemoveRange(0, inventory.lemonList.Count -recipe.lemonsPerPitcher);
-                inventory.sugarList.RemoveRange(0, inventory.sugarList.Count -recipe.sugarPerPitcher);
-            } else
-            {
-                recipe.cupsPerPitcher--;
+                player.SellLemonade();
             }
-
-
         }
 
-        public void WeatherFactor(string condition)
+        public bool PriceFactor(double price)
         {
+            bool value = false;
+            if (price <= 0.10)
+            {
+                value = true;
+                return value;
+            } else if (price > 0.10 && price <= 0.20 && buyingFactor2 < 20)
+            {
+                value = true;
+                return value;
+            } else if (price > 0.20 && price <= 0.34 && buyingFactor2 < 18)
+            {
+                value = true;
+                return value;
+            } else if (price > 0.34 && price <= 0.50 && buyingFactor2 < 13)
+            {
+
+            } else if (price > 0.50 && buyingFactor2 < 6)
+            {
+                value = true;
+                return value;
+            }
+            return value;
+        }
+        public bool WeatherFactor(string condition)
+        {
+            bool value = false;
             switch (condition)
             {
                 case "clear and sunny":
                     if(buyingFactor  < 10)
                     {
-                        BuyLemonade();
+                        value = true;
+                        return value;
                     }
-                    break;
+                    return value;
 
                 case "overcast":
                     if(buyingFactor < 6)
                     {
-                        BuyLemonade();
+                        value = true;
+                        return value;
                     }
-                    break;
+                    return value;
 
                 case "rainy":
                     if(buyingFactor < 4)
                     {
-                        BuyLemonade();
+                        value = true;
+                        return value;
                     }
-                    break;
+                    return value;
 
                 case "partly cloudy":
                     if(buyingFactor < 8)
                     {
-                        BuyLemonade();
+                        value = true;
+                        return value;
                     }
-                    break;
+                    return value;
 
             }
+            return value;
         }
     }
 }

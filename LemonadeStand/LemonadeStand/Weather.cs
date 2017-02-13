@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LemonadeStand
 {
-    class Weather
+    public class Weather
     {
         public int temperature;
         public string condition;
@@ -15,16 +15,17 @@ namespace LemonadeStand
             TempGenerator();
             ConditionGenerator();
             Console.WriteLine("The weather for the day is "+temperature+" degrees and "+condition+"");
+            Console.ReadLine();
         }
 
-        private int TempGenerator()
+        public int TempGenerator()
         {
             Random rnd = new Random();
             temperature = rnd.Next(55, 100);
             return temperature;
         }
 
-        private void ConditionGenerator()
+        public void ConditionGenerator()
         {
             int rndCondition;
             Random rnd = new Random();

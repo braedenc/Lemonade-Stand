@@ -6,9 +6,14 @@ using System.Threading.Tasks;
 
 namespace LemonadeStand
 {
-    class Wallet
+    public class Wallet
     {
-        public double balance = 20.00;
+        public double balance;
+
+        public Wallet()
+        {
+            balance = 20.00;
+        }
         public string CurrentBalance()
         {
             string showBalance = "You currently have: $"+balance+"";

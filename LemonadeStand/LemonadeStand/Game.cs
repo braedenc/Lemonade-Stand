@@ -6,22 +6,39 @@ using System.Threading.Tasks;
 
 namespace LemonadeStand
 {
-    class Game
+    public class Game
     {
-        Player player = new Player();
-        Inventory inventory = new Inventory();
-        Store store = new Store();
-        Day newDay = new Day();
-        Rules rules = new Rules();
+        Player player;
+        Store store;
+        Day newDay;
+        Rules rules;
+        Results results;
+        int numberOfDays;
+        public double totalMoneySpent;
+        public double totalMoneyMade;
+        public double totalProfit;
+        public Game()
+        {
+            player = new Player();
+            store = new Store(player);
+            rules = new Rules();
+            results = new Results();
+            numberOfDays = 7;
+        }
         public void StartGame()
         {
             rules.DisplayRules();
-            
-            store.StoreMenu();
-            newDay.StartDay();
-            
-            
-            
+
+            for (int i = 1; i <= numberOfDays; i++)
+            {
+                newDay = new Day();
+                newDay.StartDay(player, store);
+                totalMoneySpent += newDay.GetDailyMoneySpent();
+                totalMoneyMade += newDay.GetDailyMoneyMade();
+                totalProfit += newDay.GetDailyProfit(newDay.thisDayMoneySpent, newDay.thisDayMoneyMade);
+            }
+
+            results.DisplayEndResults(totalMoneySpent, totalMoneyMade, totalProfit);
         }
         
     }
